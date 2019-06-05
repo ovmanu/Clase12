@@ -14,10 +14,69 @@
 
 <body>
 
-    
     <script>
-        
+        //esto de abajo es para poder poner el script arriba, como le onload
+        $().ready(function(){
+                $('div').html('<h2>Hola JQuery</h2>');
+                $('#textoid').text('Hola JQuery');
+                $('.textoclass').html('<span style= color:blue;">hola J...</span>');
+                
+            $('#parrafo').mouseover(function(){
+                $('#parrafo').css('background-color','red');
+                $('#parrafo').css('color','white');
+            });
+            $('#parrafo').mouseout(function(){
+                $('#parrafo').css('background-color','');
+                $('#parrafo').css('color','');
+            });
+            
+            var ocultarParrafo =false;
+            $('#boton').click(function(){
+                ocultarParrafo=!ocultarParrafo;
+                if(ocultarParrafo) {
+                    $('#parrafo2').hide();
+                    $('#boton').text('MOSTRAR');
+                }
+                else {
+                    $('#parrafo2').show();
+                    $('#boton').text('OCULTAR');
+                };
+            });
+            
+            $('#nombre').val('asdasd');
+            $('#nombre').keydown(function(){
+                console.log('cambio ', $('#nombre').val());                
+            })
+            
+            var cambiarImagen =false;
+            $('#boton2').click(function(){
+                cambiarImagen=!cambiarImagen;
+                if(cambiarImagen) {
+                    $('img').attr('src','https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/46_-_Lisa_movie_cinema_film_-256.png');
+                    $('#boton2').text('MOSTRAR');
+                }
+                else {
+                    $('img').attr('src','https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png');
+                    $('#boton2').text('OCULTAR');
+                };
+            });
+
+
+        })    
     </script>
+        
+    <div></div>
+    <p id="textoid"></p>
+    <p class="textoclass"></p>
+    <p id="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id, amet veniam sint voluptates mollitia aut ipsa sit repudiandae sunt, quia deserunt delectus, magnam consectetur explicabo aspernatur iusto dolores minus.</p>
+    <input id="nombre" type="text">
+    <button id="boton">OCULTAR</button>
+    <p id="parrafo2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia facere odio animi voluptate culpa odit rerum. Labore, nemo distinctio eligendi nihil officia ea illum deserunt officiis explicabo minima, corrupti vitae.</p>
+    
+    <button id="boton2">OCULTAR</button>
+    <br>
+    <img width="190" src="https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png" alt="homerillo">
+
 
 </body>
 </html>
