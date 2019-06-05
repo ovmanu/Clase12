@@ -61,18 +61,84 @@
             apellido:'Perez',
             edad:32,
             mail:'juanperez@gmail.com',
-            foto: 'https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png'
+            foto: 'https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png',
+        
+            sumar3: function(a,b){
+                return a+b;
+            }
         }
+
+        var ob2={
+            nombre:'Paula',
+            apellido:'Fernandez',
+            edad:35,
+            mail:'paulaaa@gmail.com',
+            foto: 'https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/46_-_Lisa_movie_cinema_film_-256.png',
+        
+            sumar3: function(a,b){
+                return a+b;
+            }
+        }
+
         console.log(ob1);
 
-        var ob2=['Carlos','Perez',32,'juanperez@gmail.com','https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png']  
-        console.log(ob2);
+        var obA=['Carlos','Perez',32,'juanperez@gmail.com','https://cdn0.iconfinder.com/data/icons/smashicons-movies-retro/60/50_-_Homer_movie_cinema_film_-256.png']  
+        console.log(obA);
         
         console.log(ob1.nombre);
-        console.log(ob2[0]);
+        console.log(obA[0]);
         console.log(ob1['nombre']);
+        console.log('---------------');
         
+        //recorrer array
+        obA.forEach(function(ob,index){
+            console.log(index, '-->',ob);
+        })
+        
+        console.log('---------------');
+        
+        //recorrer objeto
+        for(var key in ob1){
+            console.log(key,': ', ob1[key]); 
+        }
 
+        console.log(Object.keys(ob1).length);
+
+        function sumar(a,b){
+            return a+b;
+        }
+        var res= sumar(); //si pongo 2 nros acá pone la suma
+        console.log(isNaN(res)?'resultado no valido':res);
+/*
+        var sumar2: function(a,b){
+                return a+b;
+        }
+
+        res=sumar2s(4,6);
+        console.log(isNaN(res)?'resultado no valido':res);
+*/
+
+        res = ob1.sumar3(3,6);
+        console.log(isNaN(res)?'resultado no valido':res);
+
+        ob1.multiplicar =function(a,b){
+            return a*b;
+        }
+        console.log(ob1.multiplicar(5,6));
+        console.log(ob1);
+
+        console.log('------------------------------');
+        var usuarios=[];
+        console.log(usuarios);
+        usuarios.push(ob1);
+        usuarios.push(ob2);
+        console.log(usuarios);
+
+        console.log('------------------------------');
+        usuarios.forEach(function(usuario){
+            console.log(usuario.nombre, 'de',usuario.edad)
+        })
+        
 
     </script>
 
