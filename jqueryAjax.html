@@ -9,25 +9,52 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
         </script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
 
+    <div class="container">
+
+        <!--FORMULARIO-->
+        <form>
+            <br>
+            <h1>FORMULARIO DE ENVÍO</h1>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" onblur="validar(this)" placeholder="Ingrese nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" onblur="validar(this)"
+                    placeholder="Ingrese apellido">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" onblur="validar(this)" placeholder="Ingrese email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" onblur="validar(this)"
+                    placeholder="Ingrese la contraseña">
+            </div>
+            <button type="button" id="boton-enviar" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <div class="jumbotron mt-3">
+            <button class="btn btn-success" id="enviar-datos">ENVIAR DATOS</button>
+            <button class="btn btn-warning" id="leer-datos">OBTENER DATOS</button>
+        </div>
+
+
+    </div>
+
+
     <script>
         //esto de abajo es para poder poner el script arriba, como el onload
         $().ready(function () {
-
+        //DENTRO DEL READY
             var usuario = {
                 nombre: 'Juan',
                 edad: 32
@@ -72,45 +99,37 @@
                 leerDatosGet();
             })
 
+            $('#boton-enviar').click(function(){
+                if(Object.keys(datosFormulario).length==4){
+                    console.log('OK envío');
+                    enviarDatosPost(datosFormulario);
+                    datosFormulario={};
+                    $('form')[0].reset();
+                }
+                console.log(datosFormulario);
+            })
+
+            /*
+            $('#nombre').blur(function(){
+                console.log('blur nombre');
+            })*/
         })    
+
+        //FUERA DEL READY
+        var datosFormulario= {};
+
+        function validar(e){
+            var id=e.id;
+            var dato= $('#'+id).val();
+            console.log(id,dato);
+            if(dato!=""){
+                datosFormulario[id]=dato;   
+            }
+        }
+
+        
+
     </script>
-
-    <div class="container">
-
-        <!--FORMULARIO-->
-        <form>
-            <br>
-            <h1>FORMULARIO DE ENVÍO</h1>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre">
-            </div>
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Ingrese email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        <div class="jumbotron mt-3">
-            <button class="btn btn-success" id="enviar-datos">ENVIAR DATOS</button>
-            <button class="btn btn-warning" id="leer-datos">OBTENER DATOS</button>
-        </div>
-
-
-    </div>
 </body>
 
 </html>
