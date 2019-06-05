@@ -9,36 +9,49 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
         </script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <body>
 
     <div class="container">
-
+        <br>
+        <h1>FORMULARIO DE ENVÍO</h1>
         <!--FORMULARIO-->
-        <form>
-            <br>
-            <h1>FORMULARIO DE ENVÍO</h1>
+        <form novalidate>
+
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" onblur="validar(this)" placeholder="Ingrese nombre">
+                <div id="error-nombre" class="alert alert-danger">Campo no válido</div>
             </div>
+
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" onblur="validar(this)"
-                    placeholder="Ingrese apellido">
+                <input type="text" class="form-control" id="apellido" onblur="validar(this)" placeholder="Ingrese apellido">
+                <div id="error-apellido" class="alert alert-danger">Campo no válido</div>
             </div>
+
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" class="form-control" id="edad" onblur="validar(this)" placeholder="Ingrese edad">
+                <div id="error-edad" class="alert alert-danger">Campo no válido</div>
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" onblur="validar(this)" placeholder="Ingrese email">
+                <div id="error-email" class="alert alert-danger">Campo no válido</div>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" onblur="validar(this)"
-                    placeholder="Ingrese la contraseña">
+                <input type="password" class="form-control" id="password" onblur="validar(this)" placeholder="Ingrese la contraseña">
+                <div id="error-password" class="alert alert-danger">Campo no válido</div>
             </div>
+
             <button type="button" id="boton-enviar" class="btn btn-primary">Enviar</button>
         </form>
 
@@ -55,6 +68,12 @@
         //esto de abajo es para poder poner el script arriba, como el onload
         $().ready(function () {
         //DENTRO DEL READY
+            $('#error-nombre').hide();
+            $('#error-apellido').hide();
+            $('#error-edad').hide();
+            $('#error-email').hide();
+            $('#error-password').hide();
+           
             var usuario = {
                 nombre: 'Juan',
                 edad: 32
@@ -99,11 +118,11 @@
                 leerDatosGet();
             })
 
-            $('#boton-enviar').click(function(){
-                if(Object.keys(datosFormulario).length==4){
+            $('#boton-enviar').click(function () {
+                if (Object.keys(datosFormulario).length == 5) {
                     console.log('OK envío');
                     enviarDatosPost(datosFormulario);
-                    datosFormulario={};
+                    datosFormulario = {};
                     $('form')[0].reset();
                 }
                 console.log(datosFormulario);
@@ -113,21 +132,28 @@
             $('#nombre').blur(function(){
                 console.log('blur nombre');
             })*/
-        })    
+
+
+
+        })
 
         //FUERA DEL READY
-        var datosFormulario= {};
+        var datosFormulario = {};
 
-        function validar(e){
-            var id=e.id;
-            var dato= $('#'+id).val();
-            console.log(id,dato);
-            if(dato!=""){
-                datosFormulario[id]=dato;   
+        function validar(e) {
+            var id = e.id;
+            var dato = $('#' + id).val();
+            console.log(id, dato);
+            if (dato != "") {
+                $('#error-'+id).hide();
+                datosFormulario[id] = dato;
+            }
+            else{
+                $('#error-'+id).show();
             }
         }
 
-        
+
 
     </script>
 </body>
